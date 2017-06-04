@@ -1,0 +1,23 @@
+{
+  "name": "react-native-ci-tools",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "bin": {
+    "react-native-ci-tools": "index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^1.1.3",
+    "commander": "^2.9.0",
+    "glob": "^7.1.2",
+    "node-find-files": "0.0.4",
+    "plist": "^2.1.0",
+    "xml2js": "^0.4.17"
+  }
+}
