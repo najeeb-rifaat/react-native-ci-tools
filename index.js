@@ -1,25 +1,33 @@
 #!/usr/bin/env node
 
-var fileSystem = require('fs');
-var chalk = require('chalk');
+const program = require('commander');
 
+const bundle = require('./src/bundle');
 
-var args = process.argv.slice(2);
-var appBase = args[0] || process.cwd();
-var iosSubDir = args[1] || 'ios';
-var androidSubDir = args[2] || 'android';
-var appName = args[3];
-var bundleId = args[4];
+const defaultIosProjectSubDir = 'ios';
+const defaultAndroidProjectSubDir = 'android';
 
-if (!appName) {
-    throw new Error('Please provide application display name (ordinal 4)');
-}
+program
+    .option('-i, --ios', 'Appy changes to IOS project (IOS .plist files)')
+    .option('-a, --android', 'Appy changes to Android project (Android Manifest and Java classes)')
+    .option('--directory <projectDirectory>', 'IOS project sub directory (relative)')
+    .option('--iosSubDir <iosSubDirectory>', 'IOS project sub directory (relative)')
+    .option('--androidSubDir <androidSubDirectory>', 'Android project sub directory (relative)');
 
-if (!bundleId) {
-    throw new Error('Please provide bundel id (ordinal 5)');
-}
+program
+    .command('bundle')
+    .arguments('<bundleId> <bundleName>')
+    .usage('"MyApp.UAT" "APP UAT"')
+    .description('Change application bundle ID and name (display name)')
+    .action((bundleId, bundleName) =>
+        bundle.processBundle({
+            projectPath: program.directory || process.cwd(),
+            iosProjectSubDir: program.iosSubDir || defaultIosProjectSubDir,
+            androidProjectSubDir: program.androidSubDir || defaultAndroidProjectSubDir,
+            displayName: bundleName,
+            bundleId: bundleId,
+            bundleName: bundleName
+        })
+    );
 
-
-var main = require('./src/main');
-
-main(appBase, iosSubDir, androidSubDir, appName, bundleId);
+program.parse(process.argv);

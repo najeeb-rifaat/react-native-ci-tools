@@ -1,7 +1,7 @@
 {
   "name": "react-native-ci-tools",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.1",
+  "description": "React native CI tools to generate new bundle name and id on thje fly",
   "main": "index.js",
   "bin": {
     "react-native-ci-tools": "index.js"
