@@ -20,4 +20,11 @@ Usage: react-native-ci-tools [options] [command]
 
   Example:
 
-    react-native-ci-tools bundle "MyApp.UAT" "APP UAT" -ia --directory /Users/mohamme89d/src/jenius/jenius2-apps
+    * feed in project location [Ios and Android]
+    react-native-ci-tools bundle "MyApp.UAT" "APP UAT" -ia --directory /Users/myUser/src/Cool/Project
+
+    * without project location (automatically use current location) [Ios and Android]
+    react-native-ci-tools bundle "BigApp.Build.300" "BIG App 300" -ia 
+
+    * with project location but chnage android only [Android (-a flag)]
+    react-native-ci-tools bundle "NANdroid.X" "NANdroid X" -a
