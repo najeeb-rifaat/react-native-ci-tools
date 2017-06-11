@@ -6,31 +6,41 @@ const common = require('./common');
 module.exports = (fileSystem, fullPath, isDirectory) => {
     return new Promise(
         (resolve, reject) => {
-            if (!common.isObject(fileSystem)) {
-                reject(new Error('Provided fileSystem argument was empty or not and object!'))
-            } else if (!common.isFunction(fileSystem.access)) {
-                reject(new Error('Provided filesSystems has no files access (access) function'))
-            } else if (!common.notEmpty(fullPath)) {
-                reject(new Error('Empty or NULL file poath was provided'))
+            try {
+                common.throwIfNotObject(fileSystem, 'Provided fileSystem argument was empty or not and object!');
+                common.throwIfNotFuction(fileSystem.access, 'Provided filesSystems has no files access (access) function');
+                common.throwIfNotFuction(fileSystem.lstat, 'Provided filesSystems has no files stat (lstat) function');
+                common.throwIfEmpty(fullPath, 'Empty or NULL file poath was provided');
+            } catch (validationsError) {
+                reject(validationsError);
             }
             resolve({ fileSystem, fullPath, isDirectory: isDirectory || false })
-        }).then(payload => payload.fileSystem.access(payload.fullPath, payload.fileSystem.constants.W_OK, (fileAccessError) => {
-            if (fileAccessError) {
-                throw fileAccessError;
+        }).then(payload => new Promise(
+            (resolve, reject) =>
+                payload.fileSystem.access(payload.fullPath, payload.fileSystem.constants.W_OK, (fileAccessError) => {
+                    if (fileAccessError) {
+                        reject(fileAccessError);
+                    }
+                    resolve(payload);
+                })
+        )).then(payload => new Promise(
+            (resolve, reject) =>
+                fileSystem.lstat(payload.fullPath, (statsError, pathStats) => {
+                    if (statsError) {
+                        reject(statsError);
+                    }
+                    resolve(pathStats);
+                })
+        )).then(pathStats => new Promise(
+            (resolve, reject) => {
+                if (pathStats.isDirectory() !== (isDirectory || false)) {
+                    reject(
+                        new Error(
+                            `Path is ${(pathStats.isDirectory() ? 'Directory' : 'File')}, should be a ${isDirectory ? 'Directory' : 'File'}`
+                        )
+                    );
+                }
+                resolve(fullPath);
             }
-            return payload;
-        })).then(payload => fileSystem.lstat(payload.fullPath, (statsError, pathStats) => {
-            if (statsError) {
-                throw statsError;
-            }
-            return pathStats;
-        })).then(pathStats => new Promise((resolve, reject) => {
-            pathStats.isDirectory() == (isDirectory || false)
-                ? resolve(fullPath)
-                : reject(
-                    new Error(
-                        `Path is ${(pathStats.isDirectory() ? 'Directory' : 'File')}, should be a ${isDirectory ? 'Directory' : 'File'}`
-                    )
-                )
-        }));
+        ));
 };

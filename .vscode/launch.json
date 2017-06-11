@@ -2,6 +2,20 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Program",
+            "program": "${workspaceRoot}/index.js",
+            "args": [
+                "bundle",
+                "--directory",
+                "[/path/to/your/debug/project]", 
+                "-ia",
+                "bundle.id",
+                "app.name"
+            ]
+        },
+        {
             "name": "Mocha Test (debug)",
             "type": "node",
             "request": "launch",

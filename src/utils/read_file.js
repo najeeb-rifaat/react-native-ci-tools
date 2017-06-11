@@ -1,4 +1,4 @@
-const defaultFileEncoding = 'utf8';
+const constants = require('../constants');
 
 /*
  * Read file off the disk in {CONSTANTS::defaultFileEncoding} format
@@ -7,7 +7,7 @@ module.exports = (fileSystem, fullPath) => {
     return new Promise(
         (resolve, reject) => {
             try {
-                fileSystem.access(fullPath, fileSystem.constants.W_OK, (accessError) => {
+                fileSystem.access(fullPath, fileSystem.constants.R_OK, (accessError) => {
                     if (accessError) {
                         throw accessError;
                     }
@@ -16,24 +16,31 @@ module.exports = (fileSystem, fullPath) => {
             } catch (fileAccessExp) {
                 reject(fileAccessExp)
             }
-        }).then(fullPath => fileSystem.lstat(fullPath, (statsError, stats) => {
-            if (statusError) {
-                throw statsError
+        }).then(fullPath => new Promise(
+            (resolve, reject) =>
+                fileSystem.lstat(fullPath, (statsError, stats) => {
+                    if (statsError) {
+                        reject(statsError);
+                    }
+                    resolve(stats);
+                })
+        )).then(pathStat => new Promise(
+            (resolve, reject) => {
+                if (!pathStat.isFile()) {
+                    reject(Error(`Found path ${fullPath}, BUT it is not a file! it is a directory`));
+                }
+                resolve(fullPath);
             }
-            return stats;
-        })).then(pathStat => new Promise((resolve, reject) => {
-            if (!pathStat.isFile()) {
-                throw new Error(`Found path ${fullPath}, BUT it is not a file! it is a directory`);
+        )).then(filePath => new Promise(
+            (resolve, reject) => {
+                try {
+                    resolve({
+                        path: filePath,
+                        content: fileSystem.readFileSync(filePath, constants.defaultFileEncoding)
+                    });
+                } catch (fileReadError) {
+                    reject(fileReadError);
+                }
             }
-            resolve(fullPath);
-        })).then(filePath => new Promise((resolve, reject) => {
-            try {
-                resolve({
-                    path: filePath,
-                    content: fileSystem.readFileSync(filePath, defaultFileEncoding)
-                });
-            } catch (fileReadError) {
-                reject(fileReadError);
-            }
-        }));
+        ));
 };

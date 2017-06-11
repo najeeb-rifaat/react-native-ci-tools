@@ -1,14 +1,13 @@
-var fileSystem = require('fs');
-var globber = require("glob")
-var plistParser = require('plist');
-var program = require('commander');
-var xml2js = require('xml2js');
+const fileSystem = require('fs');
+const globber = require("glob")
+const plistParser = require('plist');
+const program = require('commander');
+const xml2js = require('xml2js');
 
-var utils = require('../utils');
-
-var ios = require('./ios');
-var android = require('./android');
-var updaters = require('./updaters');
+const ios = require('./ios');
+const android = require('./android');
+const updaters = require('./updaters');
+const utils = require('../utils');
 
 const processBundle = (payload) => {
     var xml = {
