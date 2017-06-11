@@ -9,10 +9,10 @@
             "args": [
                 "bundle",
                 "--directory",
-                "/Users/mohamme89d/src/jenius/jenius2-apps", 
+                "[/path/to/your/debug/project]", 
                 "-ia",
-                "Najeeb.UAT",
-                "Najeeb.UAT.333"
+                "bundle.id",
+                "app.name"
             ]
         },
         {
