@@ -13,7 +13,7 @@ Usage: react-native-ci-tools [options] [command]
     -h, --help                             output usage information
     -i, --ios                              Appy changes to IOS project (IOS .plist files)
     -a, --android                          Appy changes to Android project (Android Manifest and Java classes)
-    --directory <projectDirectory>         IOS project sub directory (relative)
+    --directory <projectDirectory>         project main directory (absolute)
     --iosSubDir <iosSubDirectory>          IOS project sub directory (relative)
     --androidSubDir <androidSubDirectory>  Android project sub directory (relative)
 
