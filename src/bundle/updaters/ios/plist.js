@@ -1,4 +1,3 @@
-
 /*
  * Apply updates (edit plist files - IN MEMORY)
  */

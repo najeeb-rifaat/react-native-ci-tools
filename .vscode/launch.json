@@ -2,6 +2,20 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Program",
+            "program": "${workspaceRoot}/index.js",
+            "args": [
+                "bundle",
+                "--directory",
+                "/Users/mohamme89d/src/jenius/jenius2-apps", 
+                "-ia",
+                "Najeeb.UAT",
+                "Najeeb.UAT.333"
+            ]
+        },
+        {
             "name": "Mocha Test (debug)",
             "type": "node",
             "request": "launch",

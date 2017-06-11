@@ -10,7 +10,7 @@ const defaultAndroidProjectSubDir = 'android';
 program
     .option('-i, --ios', 'Appy changes to IOS project (IOS .plist files)')
     .option('-a, --android', 'Appy changes to Android project (Android Manifest and Java classes)')
-    .option('--directory <projectDirectory>', 'IOS project sub directory (relative)')
+    .option('--directory <projectDirectory>', 'project main directory (absolute)')
     .option('--iosSubDir <iosSubDirectory>', 'IOS project sub directory (relative)')
     .option('--androidSubDir <androidSubDirectory>', 'Android project sub directory (relative)');
 
