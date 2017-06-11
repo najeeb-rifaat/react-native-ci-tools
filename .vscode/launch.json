@@ -1,0 +1,21 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Mocha Test (debug)",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
+            "stopOnEntry": false,
+            "args": [
+                "${workspaceRoot}/src/**/*.spec.js",
+                "-u",
+                "tdd",
+                "--timeout",
+                "999999",
+                "--colors"
+            ],
+            "cwd": "${workspaceRoot}"
+        }
+    ]
+}

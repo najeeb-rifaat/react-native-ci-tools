@@ -1,9 +1,8 @@
-const globSearch = (globber, searchPattern, options) => new Promise((resolve, reject) => {
+module.exports = (globber, searchPattern, options) => new Promise((resolve, reject) => {
     try {
-        options = options || {};
         globber(
             searchPattern,
-            options,
+            options || {},
             function (fileMatchError, matchFilePaths) {
                 if (fileMatchError) {
                     reject(fileMatchError)
@@ -15,6 +14,3 @@ const globSearch = (globber, searchPattern, options) => new Promise((resolve, re
         reject(globberExp)
     }
 });
-
-
-module.exports = globSearch;

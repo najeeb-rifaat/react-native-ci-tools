@@ -1,7 +1,7 @@
 /*
- * Parse .plist files
+ * Parse .plist files into DOM
  */
-const plistParse = (plist, fileObj) => new Promise((resolve, reject) => {
+module.exports = (plist, fileObj) => new Promise((resolve, reject) => {
     try {
         resolve({
             path: fileObj.path,
@@ -11,6 +11,3 @@ const plistParse = (plist, fileObj) => new Promise((resolve, reject) => {
         reject(parseOrReadError);
     }
 });
-
-module.exports = plistParse;
-

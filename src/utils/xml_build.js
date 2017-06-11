@@ -1,7 +1,7 @@
 /*
- * Parse .plist files
+ * Build .xml files from DOM
  */
-const xmlBuild = (xml, xmlFileObject) => new Promise((resolve, reject) => {
+module.exports = (xml, xmlFileObject) => new Promise((resolve, reject) => {
     try {
         resolve({
             path: xmlFileObject.path,
@@ -11,5 +11,3 @@ const xmlBuild = (xml, xmlFileObject) => new Promise((resolve, reject) => {
         reject(parseOrReadError);
     }
 });
-
-module.exports = xmlBuild;
