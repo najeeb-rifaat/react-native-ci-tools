@@ -37,6 +37,7 @@
       "src/**/*.js"
     ],
     "exclude": [
+      "src/**/index.js",
       "src/**/*.spec.js"
     ],
     "reporter": [
