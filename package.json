@@ -7,7 +7,8 @@
     "react-native-ci-tools": "index.js"
   },
   "scripts": {
-    "test": "./node_modules/.bin/mocha ./src/**/*.spec.js"
+    "test": "nyc mocha ./src/**/*.spec.js --timeout=3000",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +22,8 @@
   },
   "devDependencies": {
     "chai": "^4.0.2",
-    "mocha": "^3.4.2"
+    "coveralls": "^2.13.1",
+    "mocha": "^3.4.2",
+    "nyc": "^11.0.2"
   }
 }
