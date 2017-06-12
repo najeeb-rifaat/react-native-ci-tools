@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "nyc mocha ./src/**/*.spec.js --all --timeout=3000",
-    "coverage": "nyc report | coveralls"
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "keywords": [],
   "author": "",

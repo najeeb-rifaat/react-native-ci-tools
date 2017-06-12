@@ -7,6 +7,7 @@ const checkPath = require('./check_path');
 const getMockedFileSystem = () => { return { access: () => null, lstat: () => null, constants: require('fs').constants }; }
 
 describe('Check Path', () => {
+  
   /*
    * Test Structures
    */
