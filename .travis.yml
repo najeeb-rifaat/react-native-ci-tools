@@ -3,3 +3,8 @@ node_js:
   - "6"
 
 after_success: npm run coverage
+
+deploy:
+  provider: npm
+  on:
+    tags: true
