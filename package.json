@@ -7,8 +7,8 @@
     "react-native-ci-tools": "index.js"
   },
   "scripts": {
-    "test": "nyc mocha ./src/**/*.spec.js --timeout=3000",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
+    "test": "nyc mocha ./src/**/*.spec.js --all --timeout=3000",
+    "coverage": "nyc report | coveralls"
   },
   "keywords": [],
   "author": "",
@@ -25,5 +25,28 @@
     "coveralls": "^2.13.1",
     "mocha": "^3.4.2",
     "nyc": "^11.0.2"
+  },
+  "nyc": {
+    "check-coverage": true,
+    "lines": 0, 
+    "statements": 0, 
+    "functions": 0,
+    "branches": 0,
+    "include": [
+      "src/*.js",
+      "src/**/*.js"
+    ],
+    "exclude": [
+      "src/**/*.spec.js"
+    ],
+    "reporter": [
+      "lcov",
+      "text-summary"
+    ],
+    "extension": [
+      ".js"
+    ],
+    "cache": true,
+    "all": true
   }
 }
