@@ -1,4 +1,4 @@
-# React Native continuous integrations tool 
+# React Native continuous integration tools
 [![Build Status](https://travis-ci.org/najeeb-rifaat/react-native-ci-tools.svg?branch=master)](https://travis-ci.org/najeeb-rifaat/react-native-ci-tools) | [![Coverage Status](https://coveralls.io/repos/github/najeeb-rifaat/react-native-ci-tools/badge.svg)](https://coveralls.io/github/najeeb-rifaat/react-native-ci-tools) | [![npm version](https://badge.fury.io/js/react-native-ci-tools.svg)](https://badge.fury.io/js/react-native-ci-tools)
 
 Change application bundle name and ID on the fly (build time) for both Android and IOS
@@ -30,3 +30,11 @@ Usage: react-native-ci-tools [options] [command]
 
     * with project location but chnage android only [Android (-a flag)]
     react-native-ci-tools bundle "NANdroid.X" "NANdroid X" -a
+
+
+  
+  Coming soon:
+
+    - Resize icons (gd resize and slice)
+    - Lable icons on build (add text overlay on app icon)
+    - Generate app info json to be used in presenation layer (git sha, build type, build number)
