@@ -42,6 +42,7 @@
     ],
     "reporter": [
       "lcov",
+      "text",
       "text-summary"
     ],
     "extension": [
