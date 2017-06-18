@@ -11,7 +11,7 @@ describe('PList Parse', () => {
     describe('1- Structure', () =>
         it('Exports a function with 2 arguments', () => {
             assert.isFunction(plistParse);
-            assert.equal(plistParse.length, 2, 'plistParse did not expose 3 arguments')
+            assert.equal(plistParse.length, 2, 'plistParse did not expose 2 arguments')
         })
     );
 

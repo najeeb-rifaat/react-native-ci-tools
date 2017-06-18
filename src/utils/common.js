@@ -1,11 +1,21 @@
 const notEmpty = (toCheck) =>
-    (toCheck !== undefined && toCheck !== null && toCheck !== '')
+    (toCheck !== null)
+    && (toCheck !== undefined)
+    && (
+        (toCheck instanceof String || (typeof (toCheck) === 'string'))
+            ? (toCheck !== '')
+            : true
+    );
+
+
 
 const isObject = (objectToTest) =>
-    (notEmpty(objectToTest) && typeof objectToTest === 'object');
+    (notEmpty(objectToTest) && objectToTest instanceof Object);
+
 
 const isFunction = (functionToTest) =>
-    (notEmpty(functionToTest) && typeof functionToTest === 'function');
+    (notEmpty(functionToTest) && functionToTest instanceof Function);
+
 
 /*
  * Common shared functions
