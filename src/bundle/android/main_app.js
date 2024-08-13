@@ -1,4 +1,4 @@
-const mainAppDefaultPathPattern = 'app/src/main/java/**/*/MainApplication.java';
+const mainAppDefaultPathPattern = 'app/src/main/java/**/*/MainApplication.{java,kt}';
 
 const process = (androidProjectValidPath, payload, strategy) => {
     const mainAppPathPattern = `${androidProjectValidPath}/${mainAppDefaultPathPattern}`;
@@ -9,9 +9,9 @@ const process = (androidProjectValidPath, payload, strategy) => {
                 if (fileSearchResults.length == 1) {
                     return fileSearchResults[0];
                 }
-                throw new Error(`Unable to determine MainApplication.java file, found (${fileSearchResults.length}) matches`);
+                throw new Error(`Unable to determine MainApplication.{java,kt} file, found (${fileSearchResults.length}) matches`);
             }
-            throw new Error(`Unable to find MainApplication.java file, search directory (${fileSearchResults.length}) matches`);
+            throw new Error(`Unable to find MainApplication.{java,kt} file, search directory (${fileSearchResults.length}) matches`);
         }).then(androidMainAppFilePath => {
             strategy.utils.log.sucess(`+ Android main app file is found : ${androidMainAppFilePath}`);
             strategy.utils.log.info(`Reading main app file`);
